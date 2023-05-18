@@ -44,9 +44,10 @@ public class Level1 {
             
             Map.Entry<String, Item> entry = itemList.get(itemList.size() - 1);
             Item item = entry.getValue(); // Access the Item object from the Map.Entry        //get the item with the highest value/weight ratio
-            System.out.println(entryToString(entry));
+            
+            //System.out.println(entryToString(entry)); // scaffolding
             if(item.getWeight() <= capacity){       //if the item fits in the backpack, add it to the backpack
-                //System.out.println(entryToString(entry) + " fits in the backpack"); 
+                System.out.println(entryToString(entry) + " fits in the backpack"); 
                 capacity -= item.getWeight();
                 backpackValue += item.getValue();
                 itemList.remove(itemList.size() - 1);
