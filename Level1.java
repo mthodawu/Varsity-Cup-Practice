@@ -47,7 +47,7 @@ public class Level1 {
             
             //System.out.println(entryToString(entry)); // scaffolding
             if(item.getWeight() <= capacity){       //if the item fits in the backpack, add it to the backpack
-                System.out.println(entryToString(entry) + " fits in the backpack"); 
+                //System.out.println(entryToString(entry) + " fits in the backpack"); 
                 capacity -= item.getWeight();
                 backpackValue += item.getValue();
                 itemList.remove(itemList.size() - 1);
