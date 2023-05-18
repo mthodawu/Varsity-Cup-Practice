@@ -1,0 +1,2 @@
+Items: {"Sunglasses": {"weight": 3,"value": 4},"Hydration pack": {"weight": 4,"value": 7},"Energy gels": {"weight": 4,"value": 8},"Towel": {"weight": 4,"value": 8},"Water bottle": {"weight": 3,"value": 1}}
+Backpack capacity: 10
