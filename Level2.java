@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Level2 {
     public static void main(String[] args) {
-        String filePath = "./2.txt";
+        String filePath = "./3.txt";
         HashMap<String, Item> itemList = readItemsFromFile(filePath);
         System.out.println("Items: " + itemList.toString());
         // Testing accessing items in the itemList dictionary
@@ -42,10 +42,10 @@ public class Level2 {
 
                     for (String part : parts) {
                         String [] token = part.trim().replaceAll("[{\"]", "").split(":");       //result: TOKEN>[Runners tape,  weight,  3,value,  6]
-                        System.out.println("TOKEN>" + Arrays.toString(token));
+                        System.out.println("TOKEN>" + Arrays.toString(token) + " LENGTH>" + token.length);
                         String itemName = token[0].trim();
-                        int weight = Integer.parseInt(token[2].trim());
-                        int value = Integer.parseInt(token[4].trim());
+                        int weight = Integer.parseInt(token[2].trim().split(",")[0]);
+                        int value = Integer.parseInt(token[3].trim().replaceAll("[{}\"]", ""));
                         System.out.println("ITEMNAME>" + itemName + " WEIGHT>" + weight + " VALUE>" + value);
                         //String[] itemProperties = parts[1].replaceAll("[{\"]", "").split(",");
                         // System.out.println("ITEMPROPERTIES>" + Arrays.toString(itemProperties));
