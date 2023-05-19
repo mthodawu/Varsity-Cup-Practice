@@ -40,7 +40,7 @@ public class Level1 {
         int backpackValue = 0;
 
         //while there are still items in the list and the backpack isn't full
-        while(!itemList.isEmpty() ){
+        while(!itemList.isEmpty() && capacity > 0){
             
             Map.Entry<String, Item> entry = itemList.get(itemList.size() - 1);
             Item item = entry.getValue(); // Access the Item object from the Map.Entry        //get the item with the highest value/weight ratio
