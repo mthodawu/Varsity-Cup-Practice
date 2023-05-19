@@ -1,0 +1,2 @@
+Items: {"Runners tape": {"weight": 3,"value": 6},"GPS watch": {"weight": 3,"value": 4},"Reflective vest": {"weight": 3,"value": 4},"Headphones": {"weight": 4,"value": 8},"Energy bar": {"weight": 5,"value": 8},"Stopwatch": {"weight": 3,"value": 6},"Sweatbands": {"weight": 5,"value": 2},"Running shorts": {"weight": 4,"value": 4},"Towel": {"weight": 4,"value": 10},"Sunglasses": {"weight": 4,"value": 10}}
+Backpack capacity: 15
