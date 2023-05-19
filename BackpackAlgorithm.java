@@ -4,7 +4,7 @@ import java.util.*;
 
 public class BackpackAlgorithm {
     public static void main(String[] args) {
-        String filePath = "./2.txt";
+        String filePath = "./3.txt";
         HashMap<String, Item> itemList = readItemsFromFile(filePath);
         int capacity = getBackpackCapacityFromFile( filePath);
         //System.out.println("Items: " + itemList.toString());
@@ -86,8 +86,10 @@ public class BackpackAlgorithm {
         List<HashMap.Entry<String, Item>> itemList = new ArrayList<>(itemsHashMap.entrySet());
         // System.out.println(itemList.toString()); // scaffolding
         // Sort the items by value/weight ratio
-        Comparator<Map.Entry<String, Item>> valueComparator = Comparator.comparing(entry -> entry.getValue().getValuePerWeight())
-        .thenComparing(entry -> entry.getValue().getWeight());
+        Comparator<Map.Entry<String, Item>> valueComparator = Comparator.comparing(
+    (Map.Entry<String, Item> entry) -> entry.getValue().getValuePerWeight())
+    .thenComparing(entry -> entry.getValue().getWeight());
+
 
         itemList.sort(valueComparator);
 
