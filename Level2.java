@@ -39,28 +39,25 @@ public class Level2 {
                 } if (readingItems) {
                     String[] parts = line.split("},");
                     System.out.println("PARTS>" + Arrays.toString(parts));
-                    for (String part : parts) {
-                        String [] token = part.trim().replaceAll("[{\"]", "").split(":");
-                        System.out.println("TOKEN>" + Arrays.toString(token));
-                        String itemName = token[0].trim().replaceAll("[{\"]", "");
-                        System.out.println("ITEMNAME>" + itemName);
-                        String[] itemProperties = parts[1].replaceAll("[{\"]", "").split(",");
-                        System.out.println("ITEMPROPERTIES>" + Arrays.toString(itemProperties));
-                        int weight = Integer.parseInt(itemProperties[0].trim().split(":")[1]);
-                        int value = Integer.parseInt(itemProperties[1].trim().split(":")[1]);
-                        itemList.put(itemName, new Item(weight, value));
-                        }
-                    }
-                    
-                }
 
-                //for something in 
+                    for (String part : parts) {
+                        String [] token = part.trim().replaceAll("[{\"]", "").split(":");       //result: TOKEN>[Runners tape,  weight,  3,value,  6]
+                        System.out.println("TOKEN>" + Arrays.toString(token));
+                        String itemName = token[0].trim();
+                        int weight = Integer.parseInt(token[2].trim());
+                        int value = Integer.parseInt(token[4].trim());
+                        System.out.println("ITEMNAME>" + itemName + " WEIGHT>" + weight + " VALUE>" + value);
+                        //String[] itemProperties = parts[1].replaceAll("[{\"]", "").split(",");
+                        // System.out.println("ITEMPROPERTIES>" + Arrays.toString(itemProperties));
+                        // int weight = Integer.parseInt(itemProperties[0].trim().split(":")[1]);
+                        // int value = Integer.parseInt(itemProperties[1].trim().split(":")[1]);
+                        itemList.put(itemName, new Item(weight, value));
+                    }
+                }
             }
-        
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return itemList;
     }
 
