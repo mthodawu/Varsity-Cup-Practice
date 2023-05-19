@@ -1,18 +1,19 @@
 import java.io.*;
 import java.util.*;
+// import java.lang.*; 
 
 public class Level2 {
     public static void main(String[] args) {
-        String filePath = "/2.txt";
+        String filePath = "./2.txt";
         HashMap<String, Item> itemList = readItemsFromFile(filePath);
-
+        System.out.println("Items: " + itemList.toString());
         // Testing accessing items in the itemList dictionary
-        Item sunglasses = itemList.get("Sunglasses");
-        System.out.println("Sunglasses - Weight: " + sunglasses.getWeight() + ", Value: " + sunglasses.getValue());
+        // Item sunglasses = itemList.get("Sunglasses");
+        // System.out.println("Sunglasses - Weight: " + sunglasses.getWeight() + ", Value: " + sunglasses.getValue());
 
         // Getting the backpack capacity
-        int backpackCapacity = getBackpackCapacityFromFile(filePath);
-        System.out.println("Backpack Capacity: " + backpackCapacity);
+        // int backpackCapacity = getBackpackCapacityFromFile(filePath);
+        // System.out.println("Backpack Capacity: " + backpackCapacity);
     }
 
     public static String entryToString(Map.Entry<String, Item> entry) {
@@ -25,23 +26,35 @@ public class Level2 {
         HashMap<String, Item> itemList = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-        String line;
-        boolean readingItems = false;
+            String line;
+            boolean readingItems = false;
 
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("Items:")) {
+                    line = line.substring(7);
+                    //System.out.println("LINE>" + line);
                     readingItems = true;
                 } else if (line.startsWith("Backpack capacity:")) {
                     readingItems = false;
-                } else if (readingItems) {
-                    String[] parts = line.split(":");
-                    String itemName = parts[0].trim();
-                    String[] itemProperties =
-                    parts[1].replaceAll("[{}\"]", "").split(",");
-                    int weight = Integer.parseInt(itemProperties[0].trim().split(":")[1]);
-                    int value = Integer.parseInt(itemProperties[1].trim().split(":")[1]);
-                    itemList.put(itemName, new Item(weight, value));
+                } if (readingItems) {
+                    String[] parts = line.split("},");
+                    System.out.println("PARTS>" + Arrays.toString(parts));
+                    for (String part : parts) {
+                        String [] token = part.trim().replaceAll("[{\"]", "").split(":");
+                        System.out.println("TOKEN>" + Arrays.toString(token));
+                        String itemName = token[0].trim().replaceAll("[{\"]", "");
+                        System.out.println("ITEMNAME>" + itemName);
+                        String[] itemProperties = parts[1].replaceAll("[{\"]", "").split(",");
+                        System.out.println("ITEMPROPERTIES>" + Arrays.toString(itemProperties));
+                        int weight = Integer.parseInt(itemProperties[0].trim().split(":")[1]);
+                        int value = Integer.parseInt(itemProperties[1].trim().split(":")[1]);
+                        itemList.put(itemName, new Item(weight, value));
+                        }
+                    }
+                    
                 }
+
+                //for something in 
             }
         
         } catch (IOException e) {
@@ -104,27 +117,27 @@ public class Level2 {
     }
 }
 
-class Item {
-    private int weight;
-    private int value;
-    private double valuePerWeight;
+// class Item {
+//     private int weight;
+//     private int value;
+//     private double valuePerWeight;
 
-    public Item(int weight, int value) {
-        this.weight = weight;
-        this.value = value;
-        this.valuePerWeight = (double) (value / weight);
-    }
+//     public Item(int weight, int value) {
+//         this.weight = weight;
+//         this.value = value;
+//         this.valuePerWeight = (double) (value / weight);
+//     }
 
-    public int getWeight() {
-        return weight;
-    }
+//     public int getWeight() {
+//         return weight;
+//     }
 
-    public int getValue() {
-        return value;
-    }
+//     public int getValue() {
+//         return value;
+//     }
 
-    public double getValuePerWeight() {
-        return valuePerWeight;
-    }
-}
+//     public double getValuePerWeight() {
+//         return valuePerWeight;
+//     }
+// }
 
