@@ -86,8 +86,9 @@ public class BackpackAlgorithm {
         List<HashMap.Entry<String, Item>> itemList = new ArrayList<>(itemsHashMap.entrySet());
         // System.out.println(itemList.toString()); // scaffolding
         // Sort the items by value/weight ratio
-        Comparator<HashMap.Entry<String, Item>> valueComparator = Comparator
-                .comparing(entry -> entry.getValue().getValuePerWeight());
+        Comparator<Map.Entry<String, Item>> valueComparator = Comparator.comparing(entry -> entry.getValue().getValuePerWeight())
+        .thenComparing(entry -> entry.getValue().getWeight());
+
         itemList.sort(valueComparator);
 
         int backpackValue = 0;
@@ -101,7 +102,7 @@ public class BackpackAlgorithm {
 
             // System.out.println(entryToString(entry)); // scaffolding
             if (item.getWeight() <= capacity) { // if the item fits in the backpack, add it to the backpack
-                // System.out.println(entryToString(entry) + " fits in the backpack");
+                System.out.println(entryToString(entry) + " fits in the backpack");
                 capacity -= item.getWeight();
                 backpackValue += item.getValue();
                 itemList.remove(itemList.size() - 1);
