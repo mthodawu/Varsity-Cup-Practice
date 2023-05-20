@@ -4,16 +4,16 @@ import java.util.*;
 
 public class Level2 {
     public static void main(String[] args) {
-        String filePath = "./3.txt";
+        String filePath = "./2.txt";
         HashMap<String, Item> itemList = readItemsFromFile(filePath);
-        System.out.println("Items: " + itemList.toString());
+        //System.out.println("Items: " + itemList.toString());
         // Testing accessing items in the itemList dictionary
         // Item sunglasses = itemList.get("Sunglasses");
         // System.out.println("Sunglasses - Weight: " + sunglasses.getWeight() + ", Value: " + sunglasses.getValue());
 
         // Getting the backpack capacity
-        // int backpackCapacity = getBackpackCapacityFromFile(filePath);
-        // System.out.println("Backpack Capacity: " + backpackCapacity);
+         int capacity = getBackpackCapacityFromFile(filePath);
+        System.out.println("Backpack Capacity: " + capacity + " Maximum Value: " + maxValue(itemList, capacity));
     }
 
     public static String entryToString(Map.Entry<String, Item> entry) {
