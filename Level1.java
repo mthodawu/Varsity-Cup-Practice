@@ -72,7 +72,7 @@ class Item {
     public Item(int weight, int value) {
         this.weight = weight;
         this.value = value;
-        this.valuePerWeight = (double) (value / weight);
+        this.valuePerWeight =  ((double) value / (double) weight);
     }
 
     public int getWeight() {

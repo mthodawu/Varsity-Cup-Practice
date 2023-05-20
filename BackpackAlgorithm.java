@@ -4,7 +4,7 @@ import java.util.*;
 
 public class BackpackAlgorithm {
     public static void main(String[] args) {
-        String filePath = "./3.txt";
+        String filePath = "./4.txt";
         HashMap<String, Item> itemList = readItemsFromFile(filePath);
         int capacity = getBackpackCapacityFromFile( filePath);
         //System.out.println("Items: " + itemList.toString());
@@ -21,7 +21,8 @@ public class BackpackAlgorithm {
     public static String entryToString(Map.Entry<String, Item> entry) {
         String key = entry.getKey();
         Item item = entry.getValue();
-        return key + " - Weight: " + item.getWeight() + ", Value: " + item.getValue();
+        return key + " - Weight: " + item.getWeight() + ", Value: " + item.getValue() + ", Value/Weight: "
+                + item.getValuePerWeight();
     }
 
     public static HashMap<String, Item> readItemsFromFile(String filePath) {
@@ -84,14 +85,16 @@ public class BackpackAlgorithm {
     public static String maxValue(HashMap<String, Item> itemsHashMap, int capacity) {
         // Create a list from the entries of the itemList
         List<HashMap.Entry<String, Item>> itemList = new ArrayList<>(itemsHashMap.entrySet());
-        // System.out.println(itemList.toString()); // scaffolding
+       
+        // // System.out.println(itemList.toString()); // scaffolding
         // Sort the items by value/weight ratio
         Comparator<Map.Entry<String, Item>> valueComparator = Comparator.comparing(
-    (Map.Entry<String, Item> entry) -> entry.getValue().getValuePerWeight())
-    .thenComparing(entry -> entry.getValue().getWeight());
-
-
+            (Map.Entry<String, Item> entry) -> entry.getValue().getValuePerWeight());//.thenComparing(entry -> entry.getValue().getWeight());
         itemList.sort(valueComparator);
+        // for (Map.Entry<String, Item> entry : itemList) {
+        //     System.out.println(entryToString(entry));
+        // }
+        //return "0";
 
         int backpackValue = 0;
 
