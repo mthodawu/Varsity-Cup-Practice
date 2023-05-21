@@ -64,26 +64,26 @@ public class Level1 {
     }
 }
 
-class Item {
-    private int weight;
-    private int value;
-    private double valuePerWeight;
+// class Item {
+//     private int weight;
+//     private int value;
+//     private double valuePerWeight;
 
-    public Item(int weight, int value) {
-        this.weight = weight;
-        this.value = value;
-        this.valuePerWeight =  ((double) value / (double) weight);
-    }
+//     public Item(int weight, int value) {
+//         this.weight = weight;
+//         this.value = value;
+//         this.valuePerWeight =  ((double) value / (double) weight);
+//     }
 
-    public int getWeight() {
-        return weight;
-    }
+//     public int getWeight() {
+//         return weight;
+//     }
 
-    public int getValue() {
-        return value;
-    }
+//     public int getValue() {
+//         return value;
+//     }
 
-    public double getValuePerWeight() {
-        return valuePerWeight;
-    }
-}
+//     public double getValuePerWeight() {
+//         return valuePerWeight;
+//     }
+// }
