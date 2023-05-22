@@ -80,7 +80,7 @@ public class Level3 {
         return backpackCapacity;
     }
 
-    public static String maxValue(HashMap<String, Item> itemsHashMap, int capacity) {
+    public static String maxValue(HashMap<String, Item> itemsHashMap, int capacity) {   //itemsHashMap is a dictionary of itemsprioritsed lowest weight first, then reciprocal of value/weight for Level 3 solution
         // Create a list from the entries of the itemList
         List<HashMap.Entry<String, Item>> itemList = new ArrayList<>(itemsHashMap.entrySet());
        
