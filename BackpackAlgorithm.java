@@ -7,9 +7,11 @@ public class BackpackAlgorithm {
         String filePath = "./3.txt";
         HashMap<String, Item> itemList = readItemsFromFile(filePath);
         int capacity = getBackpackCapacityFromFile( filePath);
+        String content = "\n2. Backpack Capacity: " + capacity + " Maximum Value: " + maxValue(itemList, capacity);
         //System.out.println("Items: " + itemList.toString());
-        System.out.println("Backpack Capacity: " + capacity + " Maximum Value: " + maxValue(itemList, capacity));
-        // Testing accessing items in the itemList dictionary
+        writeToFile("./testing.txt", content);
+       
+        // Testing accessing items in the itemList dictionary       //scaffold
         // Item sunglasses = itemList.get("Sunglasses");
         // System.out.println("Sunglasses - Weight: " + sunglasses.getWeight() + ", Value: " + sunglasses.getValue());
 
@@ -18,14 +20,14 @@ public class BackpackAlgorithm {
         // System.out.println("Backpack Capacity: " + backpackCapacity);
     }
 
-    public static String entryToString(Map.Entry<String, Item> entry) {
+    public static String entryToString(Map.Entry<String, Item> entry) {             //service function to print the items in a hashmap
         String key = entry.getKey();
         Item item = entry.getValue();
         return key + " - Weight: " + item.getWeight() + ", Value: " + item.getValue() + ", Value/Weight: "
                 + item.getValuePerWeight();
     }
 
-    public static HashMap<String, Item> readItemsFromFile(String filePath) {
+    public static HashMap<String, Item> readItemsFromFile(String filePath) {        //service function to read items from file
         HashMap<String, Item> itemList = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -64,7 +66,7 @@ public class BackpackAlgorithm {
         return itemList;
     }
 
-    public static int getBackpackCapacityFromFile(String filePath) {
+    public static int getBackpackCapacityFromFile(String filePath) {                //service function to read backpack capacity from file
         int backpackCapacity = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -82,7 +84,15 @@ public class BackpackAlgorithm {
         return backpackCapacity;
     }
 
-    public static String maxValue(HashMap<String, Item> itemsHashMap, int capacity) {
+    public static void writeToFile(String filePath, String content) {                       //service function to write to file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {      //true to append
+            bw.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String maxValue(HashMap<String, Item> itemsHashMap, int capacity) {       //where the magic happens 
         // Create a list from the entries of the itemList
         List<HashMap.Entry<String, Item>> itemList = new ArrayList<>(itemsHashMap.entrySet());
        
@@ -107,7 +117,7 @@ public class BackpackAlgorithm {
 
             // System.out.println(entryToString(entry)); // scaffolding
             if (item.getWeight() <= capacity) { // if the item fits in the backpack, add it to the backpack
-                System.out.println(entryToString(entry) + " fits in the backpack");
+                //System.out.println(entryToString(entry) + " fits in the backpack");
                 capacity -= item.getWeight();
                 backpackValue += item.getValue();
                 itemList.remove(itemList.size() - 1);
